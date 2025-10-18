@@ -78,11 +78,11 @@ export default {
         "glow-pulse": {
           "0%, 100%": { 
             opacity: "1",
-            filter: "drop-shadow(0 0 8px hsl(var(--neon-cyan)))"
+            filter: "drop-shadow(0 0 10px hsl(var(--neural-blue)))"
           },
           "50%": { 
             opacity: "0.8",
-            filter: "drop-shadow(0 0 20px hsl(var(--neon-cyan)))"
+            filter: "drop-shadow(0 0 25px hsl(var(--neural-blue)))"
           },
         },
         "slide-up": {
