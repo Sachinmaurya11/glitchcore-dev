@@ -1,7 +1,22 @@
 import { Button } from "@/components/ui/button";
 import { Download, MessageSquare } from "lucide-react";
+import { useState, useEffect } from "react";
 
 export const Hero = () => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({
+        x: (e.clientX / window.innerWidth - 0.5) * 20,
+        y: (e.clientY / window.innerHeight - 0.5) * 20,
+      });
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
   const scrollToContact = () => {
     const element = document.querySelector("#contact");
     if (element) {
@@ -33,18 +48,43 @@ export const Hero = () => {
       {/* Floating ML elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Binary code floating */}
-        <div className="absolute top-20 left-10 text-primary/20 text-2xl font-mono animate-float" style={{ animationDuration: '6s' }}>
+        <div 
+          className="absolute top-20 left-10 text-primary/20 text-2xl font-mono animate-float transition-transform duration-500" 
+          style={{ 
+            animationDuration: '6s',
+            transform: `translate(${mousePosition.x * 0.5}px, ${mousePosition.y * 0.5}px)`
+          }}
+        >
           01101101
         </div>
-        <div className="absolute top-40 right-20 text-matrix-green/20 text-xl font-mono animate-float" style={{ animationDuration: '7s', animationDelay: '1s' }}>
+        <div 
+          className="absolute top-40 right-20 text-matrix-green/20 text-xl font-mono animate-float transition-transform duration-500" 
+          style={{ 
+            animationDuration: '7s', 
+            animationDelay: '1s',
+            transform: `translate(${-mousePosition.x * 0.3}px, ${mousePosition.y * 0.4}px)`
+          }}
+        >
           11000101
         </div>
-        <div className="absolute bottom-32 left-1/4 text-primary/15 text-3xl font-mono animate-float" style={{ animationDuration: '8s', animationDelay: '2s' }}>
+        <div 
+          className="absolute bottom-32 left-1/4 text-primary/15 text-3xl font-mono animate-float transition-transform duration-500" 
+          style={{ 
+            animationDuration: '8s', 
+            animationDelay: '2s',
+            transform: `translate(${mousePosition.x * 0.6}px, ${-mousePosition.y * 0.3}px)`
+          }}
+        >
           10011010
         </div>
         
         {/* Neural network nodes */}
-        <div className="absolute top-1/3 right-1/4">
+        <div 
+          className="absolute top-1/3 right-1/4 transition-transform duration-700"
+          style={{
+            transform: `translate(${mousePosition.x * 0.8}px, ${mousePosition.y * 0.8}px)`
+          }}
+        >
           <div className="relative">
             <div className="w-3 h-3 bg-primary rounded-full animate-pulse" />
             <div className="absolute top-10 left-10 w-2 h-2 bg-secondary rounded-full animate-pulse" style={{ animationDelay: '0.5s' }} />
@@ -54,20 +94,68 @@ export const Hero = () => {
           </div>
         </div>
 
-        {/* Data symbols */}
-        <div className="absolute bottom-1/4 right-10 text-accent/20 text-4xl animate-float" style={{ animationDuration: '9s' }}>
+        {/* Data symbols - parallax effect */}
+        <div 
+          className="absolute bottom-1/4 right-10 text-accent/20 text-4xl animate-float transition-transform duration-500" 
+          style={{ 
+            animationDuration: '9s',
+            transform: `translate(${-mousePosition.x * 0.7}px, ${-mousePosition.y * 0.5}px)`
+          }}
+        >
           λ
         </div>
-        <div className="absolute top-1/4 left-1/3 text-secondary/20 text-5xl animate-float" style={{ animationDuration: '10s', animationDelay: '1.5s' }}>
+        <div 
+          className="absolute top-1/4 left-1/3 text-secondary/20 text-5xl animate-float transition-transform duration-500" 
+          style={{ 
+            animationDuration: '10s', 
+            animationDelay: '1.5s',
+            transform: `translate(${mousePosition.x * 0.4}px, ${mousePosition.y * 0.6}px)`
+          }}
+        >
           Σ
         </div>
-        <div className="absolute bottom-20 left-20 text-primary/20 text-3xl animate-float" style={{ animationDuration: '7s', animationDelay: '0.5s' }}>
+        <div 
+          className="absolute bottom-20 left-20 text-primary/20 text-3xl animate-float transition-transform duration-500" 
+          style={{ 
+            animationDuration: '7s', 
+            animationDelay: '0.5s',
+            transform: `translate(${-mousePosition.x * 0.5}px, ${mousePosition.y * 0.4}px)`
+          }}
+        >
           ∫
         </div>
         
         {/* Matrix brackets */}
-        <div className="absolute top-1/2 right-1/3 text-matrix-green/15 text-6xl font-bold animate-float" style={{ animationDuration: '11s' }}>
+        <div 
+          className="absolute top-1/2 right-1/3 text-matrix-green/15 text-6xl font-bold animate-float transition-transform duration-700" 
+          style={{ 
+            animationDuration: '11s',
+            transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`
+          }}
+        >
           [ ]
+        </div>
+
+        {/* Additional ML themed elements */}
+        <div 
+          className="absolute top-3/4 left-1/2 text-data-purple/20 text-2xl font-mono animate-float transition-transform duration-500"
+          style={{
+            animationDuration: '8s',
+            animationDelay: '1s',
+            transform: `translate(${-mousePosition.x * 0.6}px, ${-mousePosition.y * 0.7}px)`
+          }}
+        >
+          {'</>'}
+        </div>
+        <div 
+          className="absolute top-1/2 left-10 text-jupyter-orange/20 text-4xl animate-float transition-transform duration-500"
+          style={{
+            animationDuration: '9s',
+            animationDelay: '2s',
+            transform: `translate(${mousePosition.x * 0.5}px, ${-mousePosition.y * 0.5}px)`
+          }}
+        >
+          π
         </div>
       </div>
 
