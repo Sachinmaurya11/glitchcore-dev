@@ -41,7 +41,7 @@ export const Hero = () => {
       />
 
       {/* Content */}
-      <div className="container mx-auto px-4 z-10">
+      <div className="container mx-auto px-4 z-10 pt-24">
         <div className="max-w-5xl mx-auto text-center space-y-8 animate-slide-up">
           {/* Main heading */}
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter">
