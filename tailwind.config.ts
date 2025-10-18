@@ -57,6 +57,10 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        "matrix-green": "hsl(var(--matrix-green))",
+        "neural-blue": "hsl(var(--neural-blue))",
+        "jupyter-orange": "hsl(var(--jupyter-orange))",
+        "data-purple": "hsl(var(--data-purple))",
       },
       borderRadius: {
         lg: "var(--radius)",

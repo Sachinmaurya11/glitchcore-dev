@@ -27,7 +27,48 @@ export const Hero = () => {
       {/* Animated background */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/30 rounded-full blur-[120px] animate-float" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/30 rounded-full blur-[120px] animate-float" style={{ animationDelay: '1s' }} />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/30 rounded-full blur-[120px] animate-float" style={{ animationDelay: '1s' }} />
+      </div>
+
+      {/* Floating ML elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Binary code floating */}
+        <div className="absolute top-20 left-10 text-primary/20 text-2xl font-mono animate-float" style={{ animationDuration: '6s' }}>
+          01101101
+        </div>
+        <div className="absolute top-40 right-20 text-matrix-green/20 text-xl font-mono animate-float" style={{ animationDuration: '7s', animationDelay: '1s' }}>
+          11000101
+        </div>
+        <div className="absolute bottom-32 left-1/4 text-primary/15 text-3xl font-mono animate-float" style={{ animationDuration: '8s', animationDelay: '2s' }}>
+          10011010
+        </div>
+        
+        {/* Neural network nodes */}
+        <div className="absolute top-1/3 right-1/4">
+          <div className="relative">
+            <div className="w-3 h-3 bg-primary rounded-full animate-pulse" />
+            <div className="absolute top-10 left-10 w-2 h-2 bg-secondary rounded-full animate-pulse" style={{ animationDelay: '0.5s' }} />
+            <div className="absolute -top-8 left-12 w-2 h-2 bg-accent rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
+            <div className="absolute top-0 left-0 w-px h-12 bg-primary/30 rotate-45" />
+            <div className="absolute top-0 left-0 w-px h-10 bg-secondary/30 -rotate-45" />
+          </div>
+        </div>
+
+        {/* Data symbols */}
+        <div className="absolute bottom-1/4 right-10 text-accent/20 text-4xl animate-float" style={{ animationDuration: '9s' }}>
+          λ
+        </div>
+        <div className="absolute top-1/4 left-1/3 text-secondary/20 text-5xl animate-float" style={{ animationDuration: '10s', animationDelay: '1.5s' }}>
+          Σ
+        </div>
+        <div className="absolute bottom-20 left-20 text-primary/20 text-3xl animate-float" style={{ animationDuration: '7s', animationDelay: '0.5s' }}>
+          ∫
+        </div>
+        
+        {/* Matrix brackets */}
+        <div className="absolute top-1/2 right-1/3 text-matrix-green/15 text-6xl font-bold animate-float" style={{ animationDuration: '11s' }}>
+          [ ]
+        </div>
       </div>
 
       {/* Grid overlay */}
