@@ -1,8 +1,15 @@
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Award, ExternalLink, Calendar } from "lucide-react";
+import { Award, ExternalLink, Calendar, Image } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 const certifications = [
   {
@@ -22,6 +29,20 @@ const certifications = [
     verifyUrl: "#",
   },
   {
+    title: "AI Hackathon Winner",
+    issuer: "TechCon 2024",
+    date: "2024",
+    skills: ["Team Collaboration", "AI Development", "Innovation", "Problem Solving"],
+    imageUrl: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=80",
+  },
+  {
+    title: "Data Science Volunteer Program",
+    issuer: "DataForGood Initiative",
+    date: "2023",
+    skills: ["Community Service", "Data Analysis", "Social Impact", "Teaching"],
+    imageUrl: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&q=80",
+  },
+  {
     title: "Professional Data Scientist",
     issuer: "DataCamp",
     date: "2023",
@@ -30,28 +51,11 @@ const certifications = [
     verifyUrl: "#",
   },
   {
-    title: "Deep Learning Specialization",
-    issuer: "Coursera - DeepLearning.AI",
+    title: "Machine Learning Bootcamp Completion",
+    issuer: "ML Academy",
     date: "2023",
-    credentialId: "DL-SPEC-2023-321",
-    skills: ["Deep Learning", "CNN", "RNN", "PyTorch"],
-    verifyUrl: "#",
-  },
-  {
-    title: "Microsoft Certified: Azure Data Scientist Associate",
-    issuer: "Microsoft",
-    date: "2022",
-    credentialId: "MS-AZ-2022-654",
-    skills: ["Azure ML", "MLOps", "Model Training", "Deployment"],
-    verifyUrl: "#",
-  },
-  {
-    title: "Data Science Professional Certificate",
-    issuer: "IBM",
-    date: "2022",
-    credentialId: "IBM-DS-2022-987",
-    skills: ["Data Science", "Python", "SQL", "Machine Learning"],
-    verifyUrl: "#",
+    skills: ["ML Algorithms", "Model Building", "Feature Engineering", "Python"],
+    imageUrl: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&q=80",
   },
 ];
 
@@ -114,11 +118,13 @@ export const Certifications = () => {
                   {cert.issuer}
                 </p>
 
-                {/* Credential ID */}
-                <div className="mb-4 p-2 rounded bg-muted/50 border border-border">
-                  <p className="text-xs text-muted-foreground">Credential ID</p>
-                  <p className="text-xs font-mono font-bold">{cert.credentialId}</p>
-                </div>
+                {/* Credential ID - Only show if available */}
+                {cert.credentialId && (
+                  <div className="mb-4 p-2 rounded bg-muted/50 border border-border">
+                    <p className="text-xs text-muted-foreground">Credential ID</p>
+                    <p className="text-xs font-mono font-bold">{cert.credentialId}</p>
+                  </div>
+                )}
 
                 {/* Skills */}
                 <div className="flex flex-wrap gap-2 mb-4">
@@ -133,18 +139,45 @@ export const Certifications = () => {
                   ))}
                 </div>
 
-                {/* Verify Button */}
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="w-full group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-colors"
-                  asChild
-                >
-                  <a href={cert.verifyUrl} target="_blank" rel="noopener noreferrer">
-                    Verify Certificate
-                    <ExternalLink className="w-3 h-3 ml-2" />
-                  </a>
-                </Button>
+                {/* Action Button - Show image dialog or verify link */}
+                {cert.imageUrl ? (
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="w-full group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-colors"
+                      >
+                        View Certificate
+                        <Image className="w-3 h-3 ml-2" />
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-3xl">
+                      <DialogHeader>
+                        <DialogTitle>{cert.title}</DialogTitle>
+                      </DialogHeader>
+                      <div className="mt-4">
+                        <img
+                          src={cert.imageUrl}
+                          alt={`${cert.title} certificate`}
+                          className="w-full h-auto rounded-lg border border-border"
+                        />
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+                ) : (
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="w-full group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-colors"
+                    asChild
+                  >
+                    <a href={cert.verifyUrl} target="_blank" rel="noopener noreferrer">
+                      Verify Certificate
+                      <ExternalLink className="w-3 h-3 ml-2" />
+                    </a>
+                  </Button>
+                )}
               </CardContent>
 
               {/* Bottom Progress Bar */}
